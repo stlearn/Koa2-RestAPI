@@ -1,6 +1,7 @@
 import Koa2 from 'koa'
 import KoaBody from 'koa-body'
 import KoaStatic from 'koa-static2'
+import KoaJson from 'koa-json'
 import {
   System as SystemConfig
 } from './config'
@@ -43,6 +44,7 @@ app
     textLimit: '10mb'
   })) // Processing request
   // .use(PluginLoader(SystemConfig.System_plugin_path))
+  .use(KoaJson())
   .use(MainRoutes.routes())
   .use(MainRoutes.allowedMethods())
   .use(ErrorRoutes())

@@ -14,3 +14,4 @@ export default router
   .del('/api/:name', controllers.api.Delete)
   .post('/auth/:action', controllers.auth.Post)
   .all('/public/test',controllers.test)
+  .post('/user/login',controllers.login)

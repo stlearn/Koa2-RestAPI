@@ -18,12 +18,17 @@
     "koa": "^2.11.0",
     "koa-body": "^4.1.1",
     "koa-compose": "^4.1.0",
+    "koa-json": "^2.0.2",
     "koa-jwt": "^3.6.0",
     "koa-router": "^8.0.8",
     "koa-static2": "^0.1.8",
+    "koa2-swagger-ui": "^5.0.5",
     "mysql2": "^2.2.5",
     "nodemailer": "^6.4.6",
-    "sequelize": "^5.22.4"
+    "qs": "^6.10.0",
+    "request": "^2.88.2",
+    "sequelize": "^5.22.4",
+    "swagger-jsdoc": "^7.0.0-rc.6"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",

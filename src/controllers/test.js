@@ -26,8 +26,11 @@ export default (ctx) => {
   });
   // 返回结果
   ctx.body = "test";*/
-  console.log(ctx);
-  console.log(ctx.request);
-  console.log(ctx.response);
-  ctx.body = "<h1>This is Test Page</h1>"
+  if(ctx.method=='POST'){
+    ctx.body = {message:'POST'};
+  }
+  if(ctx.method=='GET'){
+    ctx.body = {message:'GET'};
+  }
+
 }

@@ -14,5 +14,10 @@ export default new Sequelize(DBConfig.database, DBConfig.username, DBConfig.pass
     max: 50,
     min: 0,
     idle: 10000
+  },
+  //写表名是什么就是什么
+  define:{
+    freezeTableName:true,
+    timestamps:false
   }
 });

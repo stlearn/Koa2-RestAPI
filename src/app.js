@@ -16,6 +16,7 @@ import fs from 'fs'
 const app = new Koa2()
 const env = process.env.NODE_ENV || 'development' // Current mode
 
+
 const publicKey = fs.readFileSync(path.join(__dirname, '../publicKey.pub'))
 
 app
@@ -48,7 +49,6 @@ app
   .use(MainRoutes.routes())
   .use(MainRoutes.allowedMethods())
   .use(ErrorRoutes())
-
 if (env === 'development') { // logger
   app.use((ctx, next) => {
     const start = new Date()

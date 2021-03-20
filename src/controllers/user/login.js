@@ -1,10 +1,11 @@
 const qs = require('qs')
 const request = require('request')
-import {APP} from '../../myconfig/myconfig'
+const User = require("../../services/user/user")
+import {APP} from '../../../myconfig/myconfig'
 export default async (ctx)=>{
   //前端返回的code
   let code = ctx.request.body.code;
-
+  console.log(ctx.request.body);
   //GET https://api.weixin.qq.com/sns/jscode2session?
   //appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code
   //参数
@@ -31,6 +32,9 @@ export default async (ctx)=>{
   //
   res = JSON.parse(res);
   console.log(res);
+
+  //调用service层的addUser方法
+  User.addUser(res.openid,ctx.request.body.name,ctx.request.body.avatar,ctx.request.body.gender);
 
   ctx.body = {id:res.openid};
 }

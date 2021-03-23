@@ -1,7 +1,7 @@
-const User = require('../../dao/user/user')
+const User = require('../../models/user/user')
 
-const addUser=function (id,name,avatar,gender) {
-  User.addUser(id,name,avatar,gender);
+const addUser=async function (openid,name,avatar,gender) {
+  return await User.addUser(openid,name,avatar,gender);
 }
 
 exports.addUser=addUser;

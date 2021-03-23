@@ -34,7 +34,7 @@ export default async (ctx)=>{
   console.log(res);
 
   //调用service层的addUser方法
-  User.addUser(res.openid,ctx.request.body.name,ctx.request.body.avatar,ctx.request.body.gender);
-
-  ctx.body = {id:res.openid};
+  let id = await User.addUser(res.openid, ctx.request.body.name, ctx.request.body.avatar, ctx.request.body.gender);
+  console.log(id);
+  ctx.body = {id:id};
 }

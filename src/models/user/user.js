@@ -67,14 +67,16 @@ const addUser=async function (openid,name,avatar,gender) {
     last_login:Date.now()+8 * 60 * 60 * 1000 //转化成北京时间
     });
     console.log("已经插入数据库：");
-    console.log(JSON.stringify(user));
+    console.log(JSON.stringify(user.id));
+    console.log(JSON.stringify(user.openid));
     //返回数据库生成的id
     return user.id;
   }else{//当前用户已经注册
     console.log("查找到用户：");
-    console.log(JSON.stringify(res));
+    console.log(JSON.stringify(res[0].id));
+    console.log(JSON.stringify(res[0].openid));
     //返回数据库生成的id
-    return res[0].id;
+    return res[0];
   }
 }
 

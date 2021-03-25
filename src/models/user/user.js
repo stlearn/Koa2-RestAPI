@@ -70,7 +70,7 @@ const addUser=async function (openid,name,avatar,gender) {
     console.log(JSON.stringify(user.id));
     console.log(JSON.stringify(user.openid));
     //返回数据库生成的id
-    return user.id;
+    return user;
   }else{//当前用户已经注册
     console.log("查找到用户：");
     console.log(JSON.stringify(res[0].id));

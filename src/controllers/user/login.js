@@ -28,12 +28,13 @@ export default async (ctx)=>{
       };
     })
   });
-  
   res = JSON.parse(res);
 
   //调用service层的addUser方法
   let user = await User.addUser(res.openid, ctx.request.body.name,
     ctx.request.body.avatar, ctx.request.body.gender);
   console.log(user.id);
+
+  //设置接口返回信息
   ctx.body = {id:user.id,description:user.description};
 }

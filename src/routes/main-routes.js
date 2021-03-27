@@ -7,7 +7,7 @@ export default router
   .get('/public/get', function (ctx, next) {
     ctx.body = '禁止访问！'
   }) // 以/public开头则不经过权限认证
-  .all('/upload', controllers.upload)
+  .post('/upload', controllers.upload)
   //测试
   .all('/public/test',controllers.test)
   .post('/user/login',controllers.login)

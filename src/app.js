@@ -38,7 +38,12 @@ app
     multipart: true,
     parsedMethods: ['POST', 'PUT', 'PATCH', 'GET', 'HEAD', 'DELETE'], // parse GET, HEAD, DELETE requests
     formidable: {
-      uploadDir: path.join(__dirname, '../assets/uploads/tmp')
+      uploadDir: path.join(__dirname, '../assets/uploads/images'),//设置文件上传目录
+      keepExtensions:true, //保持文件后缀
+      onFileBegin:(name,file)=>{
+        console.log(name);
+        console.log(file);
+      }
     },
     jsonLimit: '10mb',
     formLimit: '10mb',

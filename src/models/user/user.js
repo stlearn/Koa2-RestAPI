@@ -39,7 +39,7 @@ const User = sequelize.define('users',{
     type:DataTypes.STRING,
     allowNull:false
   },
-  last_login:{
+  first_login:{
     type:DataTypes.DATE,
     allowNull:false
   },
@@ -64,7 +64,7 @@ const addUser=async function (openid,name,avatar,gender) {
     name:name,
     avatar:avatar,
     gender:gender,
-    last_login:Date.now()+8 * 60 * 60 * 1000 //转化成北京时间
+    first_login:Date.now()+8 * 60 * 60 * 1000 //转化成北京时间
     });
     console.log("已经插入数据库：");
     console.log(JSON.stringify(user.id));

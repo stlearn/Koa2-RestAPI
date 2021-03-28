@@ -11,3 +11,4 @@ export default router
   //测试
   .all('/public/test',controllers.test)
   .post('/user/login',controllers.login)
+  .get('/publish/addgoods',controllers.goods);

@@ -1,6 +1,6 @@
 const qs = require('qs')
 const request = require('request')
-const User = require("../../services/user/user")
+const UserService = require("../../services/user/userService")
 import {APP} from '../../../myconfig/myconfig'
 export default async (ctx)=>{
   //前端返回的code
@@ -31,7 +31,7 @@ export default async (ctx)=>{
   res = JSON.parse(res);
 
   //调用service层的addUser方法
-  let user = await User.addUser(res.openid, ctx.request.body.name,
+  let user = await UserService.addUser(res.openid, ctx.request.body.name,
     ctx.request.body.avatar, ctx.request.body.gender);
   console.log(user.id);
 

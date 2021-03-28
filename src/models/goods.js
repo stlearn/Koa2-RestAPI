@@ -1,7 +1,6 @@
 const { DataTypes } = require('sequelize');
-import sequelize from '../../lib/sequelize';
 
-const Goods = () => {
+module.exports = sequelize=>{
   const attributes = {
     id: {
       type: DataTypes.BIGINT,
@@ -144,22 +143,7 @@ const Goods = () => {
       fields: ["buyer_id"]
     }]
   };
-  const GoodsModel = sequelize.define("goods_model", attributes, options);
+  const GoodsModel = sequelize.define("goods", attributes, options);
   return GoodsModel;
 };
 
-const addGoods = async function(owner,goods_info){
-  const goods = await Goods.create({
-    seller_id: owner.id,
-    price:goods_info.price,
-    name :goods_info.name,
-    saled:false,
-    up_time: Date.now()+8 * 60 * 60 * 1000,
-    imageUrl: goods_info.images[0],
-    longitude: goods_info.longitude,
-    latitude:goods_info.latitude
-  });
-  console.log(goods);
-}
-
-exports.addGoods=addGoods;

@@ -7,14 +7,21 @@ const pic = getModel(sequelize);
 /**
  * 根据商品id获取所有图片
  * @param id goods:id
- * @returns {Promise<void>} 图片链接数组
+ * @returns {Promise<any[]>} 图片链接数组
  */
 const getByGoodsId = async function (goods_id) {
+  //获取
   const res = await pic.findAll({
     where:{
-      goods_id:id
+      goods_id:goods_id
     }
   });
+
+  //提取url
+  let imageList = new Array();
+  res.forEach((e)=>imageList.push(e.pictureUrl));
+
+  return imageList;
 }
 
 /**

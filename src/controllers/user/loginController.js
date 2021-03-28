@@ -1,12 +1,18 @@
+import fs from 'fs'
+import {APP} from '../../../myconfig/myconfig'
+import path from "path"
 const qs = require('qs')
 const request = require('request')
 const UserService = require("../../services/user/userService")
-import {APP} from '../../../myconfig/myconfig'
+const jwt = require('jsonwebtoken')
+
+//读取token加密秘钥
+const publicKey = fs.readFileSync(path.join(__dirname, '../../../publicKey.pub'))
+
+//处理接口
 export default async (ctx)=>{
   //前端返回的code
   let code = ctx.request.body.code;
-  //GET https://api.weixin.qq.com/sns/jscode2session?
-  //appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code
 
   //参数
   let params={
@@ -15,6 +21,7 @@ export default async (ctx)=>{
     js_code:code,
     grant_type:APP.grant_type
   }
+
   //微信获取openID的接口
   let url = "https://api.weixin.qq.com/sns/jscode2session?"+qs.stringify(params);
 
@@ -28,13 +35,16 @@ export default async (ctx)=>{
       };
     })
   });
+
+  //解析结果
   res = JSON.parse(res);
 
-  //调用service层的addUser方法
+  //调用service层的addUser方法（会检查和处理是否已经存在用户）
   let user = await UserService.addUser(res.openid, ctx.request.body.name,
     ctx.request.body.avatar, ctx.request.body.gender);
   console.log(user.id);
 
-  //设置接口返回信息
-  ctx.body = {id:user.id,description:user.description};
+  //设置接口返回信息（下发token）
+  ctx.body = {token:jwt.sign({id:user.id},publicKey),
+    description:user.description};
 }

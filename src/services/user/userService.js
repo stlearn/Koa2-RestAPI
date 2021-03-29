@@ -24,14 +24,24 @@ const addUser=async function (openid,name,avatar,gender) {
     console.log(JSON.stringify(user.id));
     console.log(JSON.stringify(user.openid));
     //返回数据库生成的id
-    return user;
+    return [user,true];
   }else{//当前用户已经注册
     console.log("查找到用户：");
     console.log(JSON.stringify(res[0].id));
     console.log(JSON.stringify(res[0].openid));
     //返回数据库生成的id
-    return res[0];
+    return [res[0],false];
   }
 }
 
+const updateLocation = function(data,userid){
+  User.update({ community: data.community,community_longitude:parseFloat(data.community_longitude),
+    community_latitude:parseFloat(data.community_latitude)}, {
+    where: {
+      id:userid
+    }
+  });
+}
+
 exports.addUser=addUser;
+exports.updateLocation=updateLocation;

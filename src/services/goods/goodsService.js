@@ -1,5 +1,3 @@
-import { json } from 'sequelize'
-
 const getGoods = require('../../models/goods');
 import sequelize from '../../lib/sequelize'
 import { addPictures } from './pictureService'
@@ -15,12 +13,32 @@ const addGoods = async function(owner,goods_info){
     up_time: Date.now()+8 * 60 * 60 * 1000,
     imageUrl: goods_info.images[0],
     longitude: goods_info.longitude,
-    latitude:goods_info.latitude
+    latitude:goods_info.latitude,
+    description:goods_info.description,
+    kind:goods_info.kind
   });
-  console.log(JSON.stringify(goods));
 
   //将所有图片添加到pic表
   addPictures(goods.id,goods_info.images);
+
+  return goods;
+}
+
+//获取所有商品
+const getAllGoods=async function (kind) {
+  if(kind=='全部'){
+    return Goods.findAll();
+  }
+  return Goods.findAll({
+    where:{
+      kind:kind
+    }
+  });
+}
+//根据小区名获取商品
+const getGoodsByCommunity=function(community,kind){
+
 }
 
 exports.addGoods=addGoods;
+exports.getAllGoods=getAllGoods;

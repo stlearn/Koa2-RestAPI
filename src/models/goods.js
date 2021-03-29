@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 
 module.exports = sequelize=>{
   const attributes = {
-    id: {
+    goods_id: {
       type: DataTypes.BIGINT,
       allowNull: false,
       defaultValue: null,
@@ -126,6 +126,10 @@ module.exports = sequelize=>{
       autoIncrement: false,
       comment: null,
       field: "latitude"
+    },
+    kind:{
+      type:DataTypes.STRING,
+      allowNull:false
     }
   };
   const options = {

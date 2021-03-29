@@ -33,7 +33,19 @@ module.exports = sequelize => {
     introduction:{
       type:DataTypes.STRING,
       allowNull:true
-    }
+    },
+     community:{
+      type:DataTypes.STRING(30),
+       allowNull:true
+     },
+     community_longitude:{
+      type:DataTypes.DECIMAL,
+       allowNull:true
+     },
+     community_latitude:{
+       type:DataTypes.DECIMAL,
+       allowNull:true
+     }
   });
 }
 

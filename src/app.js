@@ -45,7 +45,7 @@ app
   //静态文件访问
   .use(KoaStatic('assets', path.resolve(__dirname, '../assets'))) // Static resource
   //授权控制中间件，设置路由过滤
-  .use(jwt({ secret: publicKey }).unless({ path: [/^\/public|\/login|\/assets/] }))
+  .use(jwt({ secret: publicKey }).unless({ path: [/^\/public|\/login|\/upload|\/assets/] }))
   //解析token
   .use(TokenPrase())
   //解析以及文件上传功能中间件

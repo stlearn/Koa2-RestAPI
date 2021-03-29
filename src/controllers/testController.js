@@ -2,5 +2,7 @@
 import {getByGoodsId} from '../services/goods/pictureService'
 export default async (ctx)=>{
   console.log(ctx.id)
-  console.log(ctx.query.id);
+  console.log(ctx.query);
+  console.log(ctx.request.body)
+  ctx.body = ctx.id;
 }

@@ -1,4 +1,4 @@
-//解析token
+//解析token 将解析出来的id存在ctx中
 import fs from "fs"
 import path from "path"
 const jwt = require('jsonwebtoken')

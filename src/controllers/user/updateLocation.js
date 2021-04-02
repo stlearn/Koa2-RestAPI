@@ -7,6 +7,7 @@ export default async (ctx)=>{
     community_longitude:"",
     community_latitude:"",
   }
+
   //取出数据
   data = ctx.request.body;
 

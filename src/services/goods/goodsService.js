@@ -19,7 +19,7 @@ const addGoods = async function(owner,goods_info){
   });
 
   //将所有图片添加到pic表
-  addPictures(goods.id,goods_info.images);
+  addPictures(goods.goods_id,goods_info.images);
 
   return goods;
 }
@@ -40,5 +40,10 @@ const getGoodsByCommunity=function(community,kind){
 
 }
 
+//获取商品明细
+const getGoodsDetail=async function(goodsid){
+  return await Goods.findByPk(goodsid);
+}
 exports.addGoods=addGoods;
 exports.getAllGoods=getAllGoods;
+exports.getGoodsDetail=getGoodsDetail;

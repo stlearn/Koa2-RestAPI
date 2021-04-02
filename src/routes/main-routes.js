@@ -8,5 +8,6 @@ export default router
   .post('/login',controllers.login)
   .post('/user/updatelocation',controllers.updateLocation)
   .get('/goods/getgoods',controllers.getgoods)
+  .get('/goods/getgoodsdetail',controllers.getgoodsdetail)
   .post('/publish/addgoods',controllers.goods)
   .all('/test',controllers.testController)

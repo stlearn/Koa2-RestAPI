@@ -3,6 +3,7 @@ const getUser = require('../../models/user')
 
 //实例化model
 const User = getUser(sequelize);
+
 //添加用户
 const addUser=async function (openid,name,avatar,gender) {
 
@@ -34,6 +35,11 @@ const addUser=async function (openid,name,avatar,gender) {
   }
 }
 
+/**
+ * 更新用户位置信息
+ * @param data
+ * @param userid
+ */
 const updateLocation = function(data,userid){
   User.update({ community: data.community,community_longitude:parseFloat(data.community_longitude),
     community_latitude:parseFloat(data.community_latitude)}, {
@@ -43,5 +49,11 @@ const updateLocation = function(data,userid){
   });
 }
 
+//获取用户信息
+const getUserInfo = async function(userid){
+  return await User.findByPk(userid);
+}
+
 exports.addUser=addUser;
 exports.updateLocation=updateLocation;
+exports.getUserInfo=getUserInfo;

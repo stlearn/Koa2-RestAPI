@@ -14,7 +14,6 @@ export default async (ctx)=>{
   //前端返回的code
   let code = ctx.request.body.code;
 
-  console.log(code);
   //参数
   let params={
     appid:APP.appid,
@@ -43,9 +42,14 @@ export default async (ctx)=>{
   //调用service层的addUser方法（会检查和处理是否已经存在用户）
   let [user,up_location] = await UserService.addUser(res.openid, ctx.request.body.name,
     ctx.request.body.avatar, ctx.request.body.gender);
-  console.log(up_location);
+
+  //生成token
+  const token = jwt.sign({id:user.id},publicKey);
+  //抹去openid和id
+  user.dataValues.openid = null;
+  user.dataValues.id = null;
 
   //设置接口返回信息（下发token）第三个参数表明要不要上传小区信息
-  ctx.body = {token:jwt.sign({id:user.id},publicKey),
+  ctx.body = {token:token,
     user:user,up_location:up_location};
 }

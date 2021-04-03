@@ -163,6 +163,11 @@ const getGoodsDetail=async function(goodsid){
   return await Goods.findByPk(goodsid);
 }
 
+/**
+ * 获取我在卖的
+ * @param id
+ * @returns {Promise<<Model[]>>}
+ */
 const getGoodsOnSale=async function (id) {
   return Goods.findAll({
     where:{
@@ -171,9 +176,55 @@ const getGoodsOnSale=async function (id) {
     }
   });
 }
+
+/**
+ * 获取我卖出的
+ * @param id
+ * @returns {Promise<<Model[]>>}
+ */
+const getGoodsSold=async function (id) {
+  return Goods.findAll({
+    where:{
+      saled:true,
+      seller_id:id
+    }
+  });
+}
+
+/**
+ * 获取我买到的
+ * @param id
+ * @returns {Promise<<Model[]>>}
+ */
+const getGoodsBuyed=async function (id) {
+  return Goods.findAll({
+    where:{
+      saled:true,
+      buyer_id:id
+    }
+  });
+}
+
+/**
+ * 按id获取商品
+ * @param goods_id
+ * @returns {Promise<*>}
+ */
+const getGoodsById=async function (goods_id) {
+  return Goods.findOne({
+    where:{
+      goods_id:goods_id
+    }
+  });
+}
+
+
 exports.addGoods=addGoods;
 exports.getAllGoods=getAllGoods;
 exports.getGoodsDetail=getGoodsDetail;
 exports.getGoodsByCommunity=getGoodsByCommunity;
 exports.getGoodsByDistance=getGoodsByDistance;
 exports.getGoodsOnSale=getGoodsOnSale;
+exports.getGoodsSold=getGoodsSold;
+exports.getGoodsBuyed=getGoodsBuyed;
+exports.getGoodsById=getGoodsById;

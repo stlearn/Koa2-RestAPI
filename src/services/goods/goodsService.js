@@ -42,13 +42,16 @@ const addGoods = async function(owner,goods_info){
  * @param kind
  * @returns {Promise<*>}
  */
-const getAllGoods=async function (kind) {
+const getAllGoods=async function (kind,userid) {
   if(kind=='全部'){
     return Goods.findAll();
   }
   return Goods.findAll({
     where:{
-      kind:kind
+      kind:kind,
+      seller_id:{
+        [Op.ne]:userid
+      }
     }
   });
 }
@@ -58,13 +61,13 @@ const getAllGoods=async function (kind) {
  * @param kind
  * @returns {Promise<*>}
  */
-const getGoodsByCommunity=async function(community,kind){
+const getGoodsByCommunity=async function(community,kind,userid){
   let res;
 
   const user = await User.findAll({
     attributes:['id'],
     where:{
-      community:community
+      community:community,
     }
   });
 
@@ -73,23 +76,25 @@ const getGoodsByCommunity=async function(community,kind){
     ids.push(u.dataValues.id);
   })
 
-  console.log(ids);
-
   if(kind=="全部"){
     res = await Goods.findAll({
       where:{
         seller_id: {
-          [Op.in]:ids
-        }
+          [Op.in]:ids,
+          [Op.ne]:userid
+        },
+        saled:false
       }
     });
   }else{
     res = await Goods.findAll({
       where:{
         seller_id: {
-          [Op.in]:ids
+          [Op.in]:ids,
+          [Op.ne]:userid
         },
-        kind:kind
+        kind:kind,
+        saled:false
       }
     });
   }
@@ -105,17 +110,28 @@ const getGoodsByCommunity=async function(community,kind){
  * @param kind
  * @returns {Promise<*>}
  */
-const getGoodsByDistance=async function(distance,longitude,latitude,kind){
+const getGoodsByDistance=async function(distance,longitude,latitude,kind,userid){
   let res;
 
   console.log(distance,longitude,latitude,kind);
 
   if(kind=="全部"){
-    res = await Goods.findAll();
+    res = await Goods.findAll({
+      where:{
+        saled:false,
+        seller_id:{
+          [Op.ne]:userid
+        }
+      }
+    });
   }else{
     res = await Goods.findAll({
       where:{
-        kind:kind
+        kind:kind,
+        saled:false,
+        seller_id:{
+          [Op.ne]:userid
+        }
       }
     });
   }
@@ -147,8 +163,17 @@ const getGoodsDetail=async function(goodsid){
   return await Goods.findByPk(goodsid);
 }
 
+const getGoodsOnSale=async function (id) {
+  return Goods.findAll({
+    where:{
+      saled:false,
+      seller_id:id
+    }
+  });
+}
 exports.addGoods=addGoods;
 exports.getAllGoods=getAllGoods;
 exports.getGoodsDetail=getGoodsDetail;
 exports.getGoodsByCommunity=getGoodsByCommunity;
 exports.getGoodsByDistance=getGoodsByDistance;
+exports.getGoodsOnSale=getGoodsOnSale;

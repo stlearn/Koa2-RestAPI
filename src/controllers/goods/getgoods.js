@@ -4,6 +4,8 @@ export default async (ctx)=>{
 
   const query = ctx.query;
 
+  //用户id
+  const userid = ctx.id;
   //记录结果
   let res;
   /***
@@ -12,10 +14,10 @@ export default async (ctx)=>{
    */
   if(query.location==='小区'){
     //获取结果
-    res = await goodsService.getGoodsByCommunity(query.community,query.kind);
+    res = await goodsService.getGoodsByCommunity(query.community,query.kind,userid);
   }else{ //附近
 
-    res = await goodsService.getGoodsByDistance(query.distance,query.longitude,query.latitude,query.kind);
+    res = await goodsService.getGoodsByDistance(query.distance,query.longitude,query.latitude,query.kind,userid);
   }
 
   //添加属性

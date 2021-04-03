@@ -9,5 +9,6 @@ export default router
   .post('/user/updatelocation',controllers.updateLocation)
   .get('/goods/getgoods',controllers.getgoods)
   .get('/goods/getgoodsdetail',controllers.getgoodsdetail)
+  .get('/goods/getonsale',controllers.getOnSale)
   .post('/publish/addgoods',controllers.goods)
   .all('/test',controllers.testController)

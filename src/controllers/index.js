@@ -11,6 +11,15 @@ import removeFavorites from './favorites/removeFavorites'
 import addFavorites from './favorites/addFavorites'
 import isFavorites from './favorites/isFavorites'
 import getFavorites from './favorites/getFavorites'
+import addServiceController from './services/addServiceController'
+import getProvide from './services/getProvide'
+import getUsed from './services/getUsed'
+import getServiceDetails from './services/getServiceDetails'
+import getServices from './services/getServices'
+import serviceAddFavorite from './serviceFavorites/addFavorites'
+import serviceRemoveFavorite from './serviceFavorites/removeFavorites'
+import serviceIsFavorite from './serviceFavorites/isFavorites'
+import serviceGetFavorite from './serviceFavorites/getFavorites'
 //测试接口
 import testController from "./testController"
 
@@ -28,5 +37,14 @@ export default {
   addFavorites,
   isFavorites,
   removeFavorites,
-  getFavorites
+  getFavorites,
+  addServiceController,
+  getUsed,
+  getProvide,
+  getServices,
+  getServiceDetails,
+  serviceAddFavorite,
+  serviceGetFavorite,
+  serviceIsFavorite,
+  serviceRemoveFavorite
 }

@@ -106,6 +106,11 @@ module.exports = sequelize => {
       autoIncrement: false,
       comment: null,
       field: "latitude"
+    },
+    saled:{
+      type:DataTypes.BOOLEAN,
+      allowNull:false,
+      defaultValue:false
     }
   };
   const options = {

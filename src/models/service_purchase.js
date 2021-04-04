@@ -4,14 +4,14 @@ const {
 
 module.exports = sequelize => {
   const attributes = {
-    provide_id: {
+    purchase_id: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       defaultValue: null,
       primaryKey: true,
       autoIncrement: true,
       comment: null,
-      field: "provide_id"
+      field: "purchase_id"
     },
     service_id: {
       type: DataTypes.BIGINT.UNSIGNED,

@@ -14,7 +14,7 @@ export default async (ctx)=>{
 
   for (const f of fs) {
     const goods = await goodsService.getGoodsById(f.goods_id);
-    const user = await userService.getUserInfo(f.user_id);
+    const user = await userService.getUserInfo(goods.seller_id);
     const owner = {
       name:user.name,
       avatar:user.avatar

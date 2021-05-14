@@ -12,7 +12,7 @@
     "test": "jest",
     "link": "eslint .",
     "link:fix": "eslint --fix .",
-    "sequelize-automate": "sequelize-automate -t js -h 119.3.255.95 -d neighbor -u root -P 3306  -e mysql -o models"
+    "sequelize-automate": "sequelize-automate -t js -h 119.3.255.95 -d neighbor -u root -p ****** -P 3306  -e mysql -o models"
   },
   "dependencies": {
     "@koa/multer": "^3.0.0",

@@ -61,14 +61,18 @@ const getAllGoods=async function (kind,userid) {
  * @param kind
  * @returns {Promise<*>}
  */
-const getGoodsByCommunity=async function(community,kind,userid){
+const getGoodsByCommunity=async function(community,kind,userid,key){
   let res;
+
+  console.log("key++++++++++++++++");
+  console.log(key);
 
   const user = await User.findAll({
     attributes:['id'],
-    where:{
-      community:community,
-    }
+    where:
+  {
+    community: community,
+  }
   });
 
   let ids = new Array();
@@ -79,22 +83,40 @@ const getGoodsByCommunity=async function(community,kind,userid){
   if(kind=="全部"){
     res = await Goods.findAll({
       where:{
-        seller_id: {
-          [Op.in]:ids,
-          [Op.ne]:userid
-        },
-        saled:false
+        [Op.and]:[
+          {
+            seller_id: {
+              [Op.in]:ids,
+              [Op.ne]:userid
+            },
+            saled:false
+          },
+          {
+            name: {
+              [Op.like]: `%${key}%`
+            }
+          }
+          ]
       }
     });
   }else{
     res = await Goods.findAll({
       where:{
-        seller_id: {
-          [Op.in]:ids,
-          [Op.ne]:userid
-        },
-        kind:kind,
-        saled:false
+        [Op.and]:[
+          {
+            seller_id: {
+              [Op.in]:ids,
+              [Op.ne]:userid
+            },
+            kind:kind,
+            saled:false
+          },
+          {
+            name: {
+              [Op.like]: `%${key}%`
+            }
+          }
+        ]
       }
     });
   }
@@ -110,8 +132,10 @@ const getGoodsByCommunity=async function(community,kind,userid){
  * @param kind
  * @returns {Promise<*>}
  */
-const getGoodsByDistance=async function(distance,longitude,latitude,kind,userid){
+const getGoodsByDistance=async function(distance,longitude,latitude,kind,userid,key){
   let res;
+
+  console.log(key);
 
   console.log(distance,longitude,latitude,kind);
 

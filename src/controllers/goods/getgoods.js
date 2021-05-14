@@ -14,10 +14,10 @@ export default async (ctx)=>{
    */
   if(query.location==='小区'){
     //获取结果
-    res = await goodsService.getGoodsByCommunity(query.community,query.kind,userid);
+    res = await goodsService.getGoodsByCommunity(query.community,query.kind,userid,query.search_key);
   }else{ //附近
 
-    res = await goodsService.getGoodsByDistance(query.distance,query.longitude,query.latitude,query.kind,userid);
+    res = await goodsService.getGoodsByDistance(query.distance,query.longitude,query.latitude,query.kind,userid,query.search_key);
   }
 
   //添加属性

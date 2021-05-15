@@ -22,6 +22,9 @@ import serviceIsFavorite from './serviceFavorites/isFavorites'
 import serviceGetFavorite from './serviceFavorites/getFavorites'
 //测试接口
 import testController from "./testController"
+import getMessageCount from './message/getMessageCount'
+import getMessages from './message/getMessages'
+import sendMessage from './message/sendMessage'
 
 export default {
   upload,
@@ -46,5 +49,8 @@ export default {
   serviceAddFavorite,
   serviceGetFavorite,
   serviceIsFavorite,
-  serviceRemoveFavorite
+  serviceRemoveFavorite,
+  getMessageCount,
+  getMessages,
+  sendMessage
 }

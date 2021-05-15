@@ -27,3 +27,6 @@ export default router
   .get('/service/getused',controllers.getUsed)
   .get('/service/getservicedetails',controllers.getServiceDetails)
   .all('/test',controllers.testController)
+  .get('/getmessagecount',controllers.getMessageCount)
+  .get('/getmessages',controllers.getMessages)
+  .post('/sendmesssage',controllers.sendMessage)
